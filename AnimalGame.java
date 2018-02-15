@@ -5,7 +5,7 @@ import java.io.InputStreamReader;
 class Node {
     private Node left;
     private Node right;
-	private boolean truth;
+    private boolean truth;
     private String data;
 
 
