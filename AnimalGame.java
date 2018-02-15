@@ -16,18 +16,18 @@ class Node {
         data = s;
     }
 
-	public Node(boolean b, String s) {
-		left = null;
-		right = null;
-		truth = b;
-		data = s;
-	}
+    public Node(boolean b, String s) {
+	left = null;
+	right = null;
+	truth = b;
+	data = s;
+    }
 
-	public boolean isLeaf() {
-		if (getRight() == null && getLeft() == null)
-			return true;
-		return false;
-	}
+    public boolean isLeaf() {
+	if (getRight() == null && getLeft() == null)
+		return true;
+	return false;
+    }
 
     public void setLeft(Node n) {
         left = n;
@@ -37,9 +37,9 @@ class Node {
         right = n;
     }
 
-	public void setTruth(boolean b) {
-		truth = b;
-	}
+    public void setTruth(boolean b) {
+	truth = b;
+    }
 
     public void setData(String d) {
         data = d;
@@ -53,9 +53,9 @@ class Node {
         return right;
     }
 
-	public boolean getTruth() {
-		return truth;
-	}
+    public boolean getTruth() {
+	return truth;
+    }
 
     public String getData() {
         return data;
@@ -64,7 +64,7 @@ class Node {
 
 class BinaryTree {
     private Node root;
-	private BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    private BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
     public BinaryTree() {
         root = null;
@@ -98,11 +98,11 @@ class BinaryTree {
         return isTrue(getInput().charAt(0));
     }
 
-	public void makeRoot(Node n) {
-		root = n;
-	}
+    public void makeRoot(Node n) {
+	root = n;
+    }
 
-	public void insert(Node p, Node c) {
+    public void insert(Node p, Node c) {
         if (c.getTruth() == false)
             p.setLeft(c);
         else if (c.getTruth() == true)
@@ -111,25 +111,25 @@ class BinaryTree {
 
     // Called when inserting from a leaf Node
     // (When the animal guessed is incorrect)
-	public void insert(Node n) {
-		String rightData = "";
-		String newData = "";
+    public void insert(Node n) {
+	String rightData = "";
+	String newData = "";
 
-		System.out.print("What were you thinking of?: ");
-        rightData = getInput();
+	System.out.print("What were you thinking of?: ");
+	rightData = getInput();
 
-		System.out.println("\nHere's what I got: " + rightData + "\n");
+	System.out.println("\nHere's what I got: " + rightData + "\n");
 
-		System.out.print("What's a question I can ask about that? (Answer must be true): ");
-        newData = getInput();
-		System.out.println("\nHere's what I got: " + newData + "\n");
+	System.out.print("What's a question I can ask about that? (Answer must be true): ");
+	newData = getInput();
+	System.out.println("\nHere's what I got: " + newData + "\n");
 
-		n.setLeft(n);
-		n.setData(newData);
-		n.setRight(new Node(true, rightData));
-		System.out.println("Let's start over!...\n");
-		play(root);
-	}
+	n.setLeft(n);
+	n.setData(newData);
+	n.setRight(new Node(true, rightData));
+	System.out.println("Let's start over!...\n");
+	play(root);
+    }
 
     public void inOrder() {
         inOrder(root);
@@ -143,9 +143,9 @@ class BinaryTree {
         }
     }
 
-	public void play() {
-		play(root);
-	}
+    public void play() {
+	play(root);
+    }
 
     public void play(Node n) {
         System.out.println(n.getData());
@@ -171,18 +171,18 @@ class BinaryTree {
 }
 
 public class AnimalGame {
-	public static void main(String[] args) {
-		BinaryTree tree = new BinaryTree();
-		Node root = new Node("Is it big?");
-		Node right = new Node(true, "Does it have tusks?");
-		Node left = new Node(false, "Is it a mammal?");
-		tree.makeRoot(root);
-		tree.insert(root, right);
-		tree.insert(root, left);
-		tree.insert(right, new Node(true, "Is it an elephant?"));
-		tree.insert(right, new Node(false, "Is it a whale?"));
-		tree.insert(left, new Node(true, "Is it a mouse?"));
-		tree.insert(left, new Node(false, "Is it an ant?"));
-		tree.play();
-	}
+    public static void main(String[] args) {
+	BinaryTree tree = new BinaryTree();
+	Node root = new Node("Is it big?");
+	Node right = new Node(true, "Does it have tusks?");
+	Node left = new Node(false, "Is it a mammal?");
+	tree.makeRoot(root);
+	tree.insert(root, right);
+	tree.insert(root, left);
+	tree.insert(right, new Node(true, "Is it an elephant?"));
+	tree.insert(right, new Node(false, "Is it a whale?"));
+	tree.insert(left, new Node(true, "Is it a mouse?"));
+	tree.insert(left, new Node(false, "Is it an ant?"));
+	tree.play();
+    }
 }
