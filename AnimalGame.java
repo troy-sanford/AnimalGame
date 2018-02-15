@@ -124,7 +124,7 @@ class BinaryTree {
 	newData = getInput();
 	System.out.println("\nHere's what I got: " + newData + "\n");
 
-	n.setLeft(n);
+	n.setLeft(new Node(n.getTruth(), n.getData()));
 	n.setData(newData);
 	n.setRight(new Node(true, rightData));
 	System.out.println("Let's start over!...\n");
