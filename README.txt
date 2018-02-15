@@ -4,4 +4,5 @@ A more detailed description is soon to come...
 
 # TO DO:
 - Improve insertion algorithm so that nodes can be inserted above the leaf-level
+- Make Binary Tree serializable
 - Improve user interface (check spelling of user-input, etc)
