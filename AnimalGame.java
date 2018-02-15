@@ -116,7 +116,7 @@ class BinaryTree {
 	String newData = "";
 
 	System.out.print("What were you thinking of?: ");
-	rightData = getInput();
+	rightData = "Were you thinking of a " + getInput() + "?";
 
 	System.out.println("\nHere's what I got: " + rightData + "\n");
 
@@ -179,10 +179,10 @@ public class AnimalGame {
 	tree.makeRoot(root);
 	tree.insert(root, right);
 	tree.insert(root, left);
-	tree.insert(right, new Node(true, "Is it an elephant?"));
-	tree.insert(right, new Node(false, "Is it a whale?"));
-	tree.insert(left, new Node(true, "Is it a mouse?"));
-	tree.insert(left, new Node(false, "Is it an ant?"));
+	tree.insert(right, new Node(true, "Were you thinking of an elephant?"));
+	tree.insert(right, new Node(false, "Were you thinking of a whale?"));
+	tree.insert(left, new Node(true, "Were you thinking of a mouse?"));
+	tree.insert(left, new Node(false, "Were you thinking of an ant?"));
 	tree.play();
     }
 }
