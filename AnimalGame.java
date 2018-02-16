@@ -1,8 +1,14 @@
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.io.IOException;
 
-class Node {
+class Node implements Serializable {
     private Node left;
     private Node right;
     private boolean truth;
@@ -62,15 +68,15 @@ class Node {
     }
 }
 
-class BinaryTree {
+class BinaryTree implements Serializable {
     private Node root;
-    private BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
     public BinaryTree() {
         root = null;
     }
 
     public String getInput() {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String s = "";
         try {
             s = br.readLine();
@@ -99,7 +105,7 @@ class BinaryTree {
     }
 
     public void makeRoot(Node n) {
-	root = n;
+	    root = n;
     }
 
     public void insert(Node p, Node c) {
@@ -172,17 +178,57 @@ class BinaryTree {
 
 public class AnimalGame {
     public static void main(String[] args) {
-	BinaryTree tree = new BinaryTree();
-	Node root = new Node("Is it big?");
-	Node right = new Node(true, "Does it have tusks?");
-	Node left = new Node(false, "Is it a mammal?");
-	tree.makeRoot(root);
-	tree.insert(root, right);
-	tree.insert(root, left);
-	tree.insert(right, new Node(true, "Were you thinking of an elephant?"));
-	tree.insert(right, new Node(false, "Were you thinking of a whale?"));
-	tree.insert(left, new Node(true, "Were you thinking of a mouse?"));
-	tree.insert(left, new Node(false, "Were you thinking of an ant?"));
-	tree.play();
+
+    String dir = "/Users/Troy/Desktop/binarytree.ser";
+
+    BinaryTree tree = load(dir);
+    
+    tree.play();
+    
+    save(tree, dir);
+
+    }
+
+    public static BinaryTree load(String dir) {
+        BinaryTree tree = new BinaryTree();
+        try {
+            FileInputStream fileIn = new FileInputStream(dir);
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+    
+            tree = (BinaryTree) in.readObject();
+    
+            in.close();
+            fileIn.close();
+            System.out.println("Loaded successfully!");
+
+        } catch(FileNotFoundException e) {
+            Node root = new Node("Is it big?");
+            Node right = new Node(true, "Were you thinking of an elephant?");
+            Node left = new Node(false, "Were you thinking of an ant?");
+            tree.makeRoot(root);
+            tree.insert(root, right);
+            tree.insert(root, left);
+            System.out.println("Load failed. Created new tree\n");
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return tree;
+    }
+
+    public static void save(BinaryTree tree, String dir) {
+        try {
+            FileOutputStream fileOut = new FileOutputStream(dir);
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+
+            out.writeObject(tree);
+            out.close();
+            fileOut.close();
+            System.out.println("Save Successful!");
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
     }
 }
