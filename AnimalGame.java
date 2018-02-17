@@ -133,8 +133,7 @@ class BinaryTree implements Serializable {
 	n.setLeft(new Node(n.getTruth(), n.getData()));
 	n.setData(newData);
 	n.setRight(new Node(true, rightData));
-	System.out.println("Let's start over!...\n");
-	play(root);
+	System.out.println("Thanks, I'll remember that for next time!...\n");
     }
 
     public void inOrder() {
@@ -158,7 +157,7 @@ class BinaryTree implements Serializable {
         System.out.print("Y/N: ");
         if (isTrue(getInput().charAt(0))) {
             if (n.getRight() == null) {
-                System.out.print("I got it!\n");
+                System.out.println("\nI got it!\n");
             }
             else {
                 play(n.getRight());
