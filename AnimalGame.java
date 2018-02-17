@@ -121,14 +121,25 @@ class BinaryTree implements Serializable {
 	String rightData = "";
 	String newData = "";
 
-	System.out.print("What were you thinking of?: ");
-	rightData = "Were you thinking of a " + getInput() + "?";
+    while (true) {
+        System.out.print("What were you thinking of?: ");
+	    rightData = "Were you thinking of a " + getInput() + "?";
+        System.out.print("\nHere's what I got: " + rightData + "\nIs that correct (Y/N)?: ");
+        if (isTrue(getInput().charAt(0))) {
+            System.out.println("Okay, got it!");
+            break;
+        }
+    }
 
-	System.out.println("\nHere's what I got: " + rightData + "\n");
-
-	System.out.print("What's a question I can ask about that? (Answer must be true): ");
-	newData = getInput();
-	System.out.println("\nHere's what I got: " + newData + "\n");
+    while (true) {
+        System.out.print("What's a question I can ask about that? (Answer must be true): ");
+        newData = getInput();
+        System.out.print("\nHere's what I got: " + newData + "\nIs that correct (Y/N)?: ");
+        if (isTrue(getInput().charAt(0))) {
+            System.out.println("Okay, got it!");
+            break;
+        }
+    }
 
 	n.setLeft(new Node(n.getTruth(), n.getData()));
 	n.setData(newData);
@@ -225,7 +236,7 @@ public class AnimalGame {
             out.writeObject(tree);
             out.close();
             fileOut.close();
-            System.out.println("Save Successful!");
+            System.out.println("Saved successfully to directory " + dir);
         } catch(IOException e) {
             e.printStackTrace();
         }
