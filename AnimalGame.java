@@ -179,7 +179,7 @@ class BinaryTree implements Serializable {
 public class AnimalGame {
     public static void main(String[] args) {
 
-    String dir = System.getProperty("user.dir") + "animal_info.ser";
+    String dir = System.getProperty("user.dir") + "/animal_info.ser";
 
     BinaryTree tree = load(dir);
     
